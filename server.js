@@ -1,5 +1,9 @@
 //Express.js'i projeye dahil ediyoruz.
 const express = require("express");
+//
+const socketio = require("socket.io");
+//
+const http = require("http");
 const formatMessage = require("./utils/messages");
 //Socket.IO için Redis adapter'ını içe aktarır
 const createAdapter = require("@socket.io/redis-adapter").createAdapter;
@@ -18,9 +22,9 @@ const {
 
 // Express.js objesini oluşturun.
 const app = express();
-
+const server = http.createServer(app);
 // Socket.IO kütüphanesi projeye dahil edilir.
-const io = require("socket.io")(server);
+const io = socketio(server);
 
 //istemciler bağlandığında sunucu tarafında bir olay tetikler ve her yeni bağlantıda belirli işlemler (örneğin, sunucuya mesaj gönderme veya istemciye veri yollama) yapılmasına olanak tanır.
 io.on("connection", (socket) => {
