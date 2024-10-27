@@ -3,17 +3,19 @@ const chatMessages = document.querySelector(".chat-messages");
 const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
 
-// Get username and room from URL
+// Get username and room from URL - URL'deki sorgu parametrelerini kullanarak kullanıcı adı ve oda bilgisini alır ve bir WebSocket bağlantısı başlatır.
 const { username, room } = Qs.parse(location.search, {
+  //Qs.parse fonksiyonu, URL’deki sorgu parametrelerini (location.search) nesneye dönüştürür. Örneğin, URL ?username=John&room=JavaScript şeklindeyse bu fonksiyon { username: "John", room: "JavaScript" } nesnesini döndürür.
   ignoreQueryPrefix: true,
 });
+console.log(username, room);
 
-const socket = io();
+const socket = io(); //socket değişkeni, sunucu ile gerçek zamanlı veri alışverişi yapılmasını sağlar ve bu değişken üzerinden mesaj gönderme/alma işlemleri yapılabilir.
 
 // Join chatroom
 socket.emit("joinRoom", { username, room });
 
-// Get room and users
+// Get room and users - odadaki kullanıcı listesini ve oda adını güncel tutmak için kullanılır ve sunucudan her "roomUsers" olayı tetiklendiğinde güncellenir.
 socket.on("roomUsers", ({ room, users }) => {
   outputRoomName(room);
   outputUsers(users);
@@ -22,10 +24,10 @@ socket.on("roomUsers", ({ room, users }) => {
 // Message from server
 socket.on("message", (message) => {
   console.log(message);
-  outputMessage(message);
+  outputMessage(message); // gelen mesajı arayüze ekler
 
   // Scroll down
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  chatMessages.scrollTop = chatMessages.scrollHeight; //sohbet alanını otomatik olarak aşağı kaydırarak son gelen mesajın görünür olmasını sağlar.
 });
 
 // Message submit

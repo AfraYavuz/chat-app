@@ -16,16 +16,37 @@
     <div class="chat-container">
       <header class="chat-header">
         <h1><i class="fas fa-smile"></i> ChatCord</h1>
-        <a id="leave-btn" class="btn">Leave Room</a>
+        <a href="index.html" class="btn">Leave Room</a>
       </header>
       <main class="chat-main">
         <div class="chat-sidebar">
           <h3><i class="fas fa-comments"></i> Room Name:</h3>
-          <h2 id="room-name"></h2>
+          <h2 id="room-name">JavaScript</h2>
           <h3><i class="fas fa-users"></i> Users</h3>
-          <ul id="users"></ul>
+          <ul id="users">
+            <li>Brad</li>
+            <li>John</li>
+            <li>Mary</li>
+            <li>Paul</li>
+            <li>Mike</li>
+          </ul>
         </div>
-        <div class="chat-messages"></div>
+        <div class="chat-messages">
+          <div class="message">
+            <p class="meta">Brad <span>9:12pm</span></p>
+            <p class="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
+              repudiandae.
+            </p>
+          </div>
+          <div class="message">
+            <p class="meta">Mary <span>9:15pm</span></p>
+            <p class="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
+              repudiandae.
+            </p>
+          </div>
+        </div>
       </main>
       <div class="chat-form-container">
         <form id="chat-form">
@@ -40,13 +61,15 @@
         </form>
       </div>
     </div>
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
       crossorigin="anonymous"
     ></script>
-    <script src="/socket.io/socket.io.js"></script>
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qs@6.11.0/dist/qs.min.js"></script>
+    <!-- qs kütüphanesini ekleyin -->
     <script src="js/main.js"></script>
   </body>
 </html>

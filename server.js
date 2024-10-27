@@ -26,13 +26,14 @@ const server = http.createServer(app);
 // Socket.IO kütüphanesi projeye dahil edilir.
 const io = socketio(server);
 
-//istemciler bağlandığında sunucu tarafında bir olay tetikler ve her yeni bağlantıda belirli işlemler (örneğin, sunucuya mesaj gönderme veya istemciye veri yollama) yapılmasına olanak tanır.
+/*istemciler bağlandığında sunucu tarafında bir olay tetikler ve her yeni bağlantıda belirli işlemler (örneğin, sunucuya mesaj gönderme veya istemciye veri yollama) yapılmasına olanak tanır.
 io.on("connection", (socket) => {
   console.log("a user connected");
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
-});
+});*/
+
 /* Sunucuyu 8080 portunda başlatın,8080 portunda bir istemci bağlandığında konsola "a user connected" mesajı yazdırır.
 server.listen(8080, () => {
     console.log("Server is running on port 8080");
@@ -49,7 +50,7 @@ io.on("connection", (socket) => {
 const botName = "ChatCord Bot";
 //Bu kod, Redis kullanarak Socket.IO'nun dağıtılmış bir ortamda çalışabilmesini sağlayan bir yapı oluşturur. Socket.IO-Redis adapter ile çoklu sunucu yapısında bile Socket.IO üzerinden mesajlaşmayı senkronize edebiliriz.
 (async () => {
-  pubClient = createClient({ url: "redis://127.0.0.1:6379" });
+  pubClient = createClient({ url: "redis://127.0.0.1:7777" });
   await pubClient.connect();
   subClient = pubClient.duplicate();
   io.adapter(createAdapter(pubClient, subClient));
